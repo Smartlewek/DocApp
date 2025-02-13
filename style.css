@@ -1,0 +1,243 @@
+body {
+    background: url("fajberek.jpg") no-repeat center center; /* Ustawienie tła */
+    background-size: cover; /* Pokrycie całego tła */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    margin: 0; /* Usunięcie domyślnych marginesów */
+}
+
+* {
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+form {
+    width: 90%; /* Użyj 90% szerokości dla większej responsywności */
+    max-width: 500px; /* Maksymalna szerokość */
+    border: 2px solid rgba(255, 255, 255, 0.5); /* Białe obramowanie z przezroczystością */
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.8); /* Przezroczyste tło */
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Cień dla lepszego efektu */
+}
+
+/* Style dla formularza dodawania urządzenia */
+form.add-device {
+    max-width: 700px; /* Większa maksymalna szerokość */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+input {
+    display: block;
+    border: 2px solid #ccc;
+    width: 95%;
+    padding: 10px;
+    margin: 10px auto;
+    border-radius: 5px;
+}
+
+label {
+    color: #888;
+    font-size: 18px;
+    padding: 10px;
+}
+
+button {
+    background: #555; 
+    padding: 10px 35px;
+    color: #fff;
+    border-radius: 5px;
+    border: none; /* Brak obramowania */
+    cursor: pointer; /* Kursor w kształcie ręki */
+} 
+
+button:hover {
+    opacity: 0.7; /* Efekt po najechaniu */
+}
+
+.error {
+    text-align: center;
+    font-weight: bold;
+    color: #A94442;
+    padding: 10px;
+    width: 95%;
+    margin: 10px auto;
+}
+
+h1 {
+    text-align: center;
+    color: #fff;
+}
+
+a {
+    background: #555;
+    padding: 10px 15px;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer; /* Kursor w kształcie ręki */
+}
+
+a:hover {
+    opacity: 0.7; /* Efekt po najechaniu */
+}
+
+/* Media Queries dla responsywności */
+@media (max-width: 600px) {
+    form {
+        padding: 20px; /* Zmniejszenie paddingu */
+    }
+
+    input {
+        padding: 8px; /* Mniejsze padding dla inputów */
+    }
+
+    button {
+        padding: 8px 10px; /* Mniejsze padding dla przycisków */
+    }
+
+    h2 {
+        margin-bottom: 20px; /* Zmniejszenie marginesu dla nagłówka */
+    }
+
+    .error {
+        width: 90%; /* Użycie 90% szerokości dla błędów */
+    }
+}
+
+.version {
+    position: absolute;
+    bottom: 20px; /* Odstęp od dołu */
+    left: 50%; /* Wyśrodkowanie */
+    transform: translateX(-50%); /* Przesunięcie o połowę szerokości dla wyśrodkowania */
+    color: #fff; /* Kolor tekstu */
+    font-size: 14px; /* Rozmiar czcionki */
+    text-align: center; /* Wyśrodkowanie tekstu */
+    z-index: 1; /* Ustawienie nad innymi elementami */
+}
+
+.clock {
+    font-size: 18px; /* Rozmiar czcionki */
+    color: #fff; /* Kolor tekstu */
+    text-align: center; /* Wyśrodkowanie */
+    margin-bottom: 20px; /* Odstęp od formularza */
+}
+
+.network-info {
+    text-align: center; /* Wyśrodkowanie tekstu */
+    margin: 10px auto; /* Odstęp od pozostałych elementów */
+    color: #333; /* Kolor tekstu */
+    font-size: 14px; /* Mniejszy rozmiar czcionki */
+    padding: 10px; /* Wewnętrzny odstęp */
+    width: 95%; /* Dopasowanie szerokości do pozostałych elementów formularza */
+}
+
+/* Style dla tabeli */
+table {
+    width: 100%; /* Pełna szerokość */
+    border-collapse: collapse; /* Usunięcie odstępów między komórkami */
+    margin: 20px 0; /* Margines nad i pod tabelą */
+    background: rgba(255, 255, 255, 0.8); /* Jasne, półprzezroczyste tło */
+    border-radius: 10px; /* Zaokrąglone rogi */
+    overflow: hidden; /* Ukrycie elementów wykraczających poza tabelę */
+}
+
+table, th, td {
+    border: 2px solid rgba(255, 255, 255, 0.5); /* Jasne obramowanie tabeli i komórek */
+}
+
+th, td {
+    padding: 10px; /* Odstęp wewnętrzny w komórkach */
+    text-align: left; /* Wyrównanie tekstu do lewej */
+    color: #333; /* Kolor tekstu */
+}
+
+th {
+    background-color: rgba(255, 255, 255, 0.9); /* Lekko ciemniejsze tło dla nagłówków */
+}
+
+td {
+    background-color: rgba(255, 255, 255, 0.6); /* Lżejsze tło dla komórek danych */
+}
+
+/* Przyciski akcji */
+.action-buttons {
+    display: flex; /* Układ poziomy dla przycisków */
+    justify-content: space-around; /* Równomierne rozmieszczenie przycisków */
+}
+
+.action-buttons button {
+    background-color: #555; /* Ciemnoszare tło */
+    color: #fff; /* Biały tekst */
+    border: none; /* Brak obramowania */
+    padding: 5px 10px; /* Odstęp wewnętrzny */
+    border-radius: 5px; /* Zaokrąglone rogi */
+    cursor: pointer; /* Kursor w kształcie ręki */
+}
+
+.action-buttons button:hover {
+    opacity: 0.7; /* Efekt przyciemnienia po najechaniu */
+}
+
+/* Responsywność dla przycisków akcji */
+@media (max-width: 600px) {
+    .action-buttons {
+        flex-direction: column; /* Układ pionowy na małych ekranach */
+    }
+
+    .action-buttons button {
+        margin-bottom: 10px; /* Dodanie odstępu między przyciskami */
+    }
+}
+
+/* Dodatkowe style z pliku PHP */
+.add-device {
+    margin: 10px auto; /* Wyśrodkowanie */
+    display: block; /* Zmiana na block */
+    padding: 10px 15px; /* Wewnętrzny odstęp */
+    color: #fff; /* Kolor tekstu */
+    background-color: #007BFF; /* Kolor tła przycisku */
+    border: none; /* Brak obramowania */
+    border-radius: 5px; /* Zaokrąglone rogi */
+    cursor: pointer; /* Kursor w kształcie ręki */
+}
+
+.add-device:hover {
+    background-color: #0056b3; /* Ciemniejszy kolor po najechaniu */
+}
+
+.devices-list {
+    margin-top: 20px; /* Odstęp nad listą urządzeń */
+}
+
+.device-item {
+    padding: 10px; /* Wewnętrzny odstęp */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Dolna linia oddzielająca */
+}
+
+.device-item:last-child {
+    border-bottom: none; /* Usunięcie dolnej linii dla ostatniego elementu */
+}
+
+.device-item h3 {
+    margin: 0; /* Usunięcie marginesu */
+    font-size: 18px; /* Rozmiar nagłówka dla urządzenia */
+}
+
+.device-item p {
+    margin: 5px 0; /* Margines dla tekstu opisu urządzenia */
+    color: #666; /* Kolor tekstu */
+}
+.center-button {
+    display: flex;
+    justify-content: center;
+}
+
+
