@@ -165,63 +165,69 @@ if (!isset($_SESSION['2fa_verified']) || $_SESSION['2fa_verified'] !== true) {
                 </tr>
             </thead>
             <tbody>
-                <?php
-// Konfiguracja połączenia z bazą danych
+
+<?php
+// Ładujemy konfigurację połączenia z bazą danych
 require_once 'db_connection.php';
 
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+// Sprawdzanie, czy użytkownik przesłał formularz wyszukiwania
+$searchField = isset($_POST['searchField']) ? $_POST['searchField'] : '';
+$searchQuery = isset($_POST['search']) ? $_POST['search'] : '';
 
-    // Sprawdzanie, czy użytkownik przesłał formularz wyszukiwania
-    $searchField = isset($_POST['searchField']) ? $_POST['searchField'] : '';
-    $searchQuery = isset($_POST['search']) ? $_POST['search'] : '';
+// Budowanie zapytania w zależności od wybranego pola wyszukiwania
+$sql = "SELECT name, ip_address FROM devices";
 
-    // Budowanie zapytania w zależności od wybranego pola wyszukiwania
-    $sql = "SELECT name, ip_address FROM devices";
-    
-    if (!empty($searchField) && !empty($searchQuery)) {
-        // Zabezpieczenie przed SQL Injection poprzez przygotowanie zapytania
-        $sql .= " WHERE $searchField LIKE :searchQuery";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(['searchQuery' => '%' . $searchQuery . '%']);
-    } else {
-        // Jeśli nie ma filtra, pobierz wszystkie urządzenia
-        $stmt = $pdo->query($sql);
-    }
-
-    $devices = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    // Sprawdzanie dostępności urządzeń za pomocą ping
-    foreach ($devices as $device) {
-        $name = $device['name'];
-        $ip = $device['ip_address'];
-
-        // Komenda ping (1 ping, tylko pod Linuxem, na Windowsie `-n 1`)
-        $pingresult = shell_exec("ping -c 1 -W 1 $ip");
-
-        // Przetwarzanie wyniku pinga
-        if (preg_match('/bytes from (.*): icmp_seq=(\d+) ttl=(\d+) time=([\d.]+) ms/', $pingresult, $matches)) {
-            $status = '<span class="badge bg-success">Dostępny</span>';
-            $ping_class = 'ping-active';
-        } else {
-            $status = '<span class="badge bg-danger">Niedostępny</span>';
-            $ping_class = 'ping-inactive';
-        }
-
-        // Wyświetlenie danych w tabeli
-        echo "<tr>
-                <td>$name</td>
-                <td>$ip</td>
-                <td>$status</td>
-                <td><div class='ping-indicator $ping_class'></div></td>
-              </tr>";
-    }
-
-} catch (PDOException $e) {
-    echo "Błąd połączenia z bazą danych: " . $e->getMessage();
+if (!empty($searchField) && !empty($searchQuery)) {
+    // Zabezpieczenie przed SQL Injection poprzez przygotowanie zapytania
+    $sql .= " WHERE $searchField LIKE ?";
+    $stmt = $conn->prepare($sql);
+    $searchParam = "%" . $searchQuery . "%"; // Dodajemy % do zapytania
+    $stmt->bind_param("s", $searchParam); // "s" oznacza, że szukamy w stringu
+    $stmt->execute();
+} else {
+    // Jeśli nie ma filtra, pobierz wszystkie urządzenia
+    $stmt = $conn->query($sql);
 }
+
+// Pobieranie wyników
+$devices = [];
+if ($stmt) {
+    while ($device = $stmt->fetch_assoc()) {
+        $devices[] = $device;
+    }
+}
+
+// Sprawdzanie dostępności urządzeń za pomocą ping
+foreach ($devices as $device) {
+    $name = $device['name'];
+    $ip = $device['ip_address'];
+
+    // Komenda ping (1 ping, tylko pod Linuxem, na Windowsie `-n 1`)
+    $pingresult = shell_exec("ping -c 1 -W 1 $ip");
+
+    // Przetwarzanie wyniku pinga
+    if (preg_match('/bytes from (.*): icmp_seq=(\d+) ttl=(\d+) time=([\d.]+) ms/', $pingresult, $matches)) {
+        $status = '<span class="badge bg-success">Dostępny</span>';
+        $ping_class = 'ping-active';
+    } else {
+        $status = '<span class="badge bg-danger">Niedostępny</span>';
+        $ping_class = 'ping-inactive';
+    }
+
+    // Wyświetlenie danych w tabeli
+    echo "<tr>
+            <td>$name</td>
+            <td>$ip</td>
+            <td>$status</td>
+            <td><div class='ping-indicator $ping_class'></div></td>
+          </tr>";
+}
+
+// Zamknięcie połączenia z bazą danych
+$conn->close();
 ?>
+
+ 
 
             </tbody>
         </table>
