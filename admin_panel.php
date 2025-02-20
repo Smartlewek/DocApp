@@ -43,7 +43,7 @@ if (isset($_POST['reset_password'])) {
 $qrCodeUrl = "";
 $hideTable = false;  // Zmienna kontrolująca widoczność tabeli
 if (isset($_POST['generate_2fa'])) {
-    require_once 'GoogleAuthenticator.php';
+    require_once 'GoogleAuthenticator/PHPGangsta/GoogleAuthenticator.php';
     $g = new PHPGangsta_GoogleAuthenticator();
 
     $user_id = $_POST['user_id'];
@@ -69,7 +69,7 @@ if (isset($_POST['add_user'])) {
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $role = $_POST['role'];
 
-    require_once 'GoogleAuthenticator.php';
+    require_once 'GoogleAuthenticator/PHPGangsta/GoogleAuthenticator.php';
     $g = new PHPGangsta_GoogleAuthenticator();
     $new_secret = $g->createSecret();
 
