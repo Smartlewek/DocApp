@@ -1,9 +1,24 @@
 <?php
 session_start();
 
-// Sprawdzenie, czy użytkownik jest zalogowany
+
+function hasPermission($action) {
+    $role = $_SESSION['role'] ?? '';
+    $permissions = [
+        'admin' => ['pingowanie'],
+        'user' => ['pingowanie'],
+        'view' => [] // U  ytkownik "view" nie ma dost ^ypu do pingowanie
+    ];
+    return in_array($action, $permissions[$role] ?? []);
+}
+
 if (!isset($_SESSION['username'])) {
     header("Location: login.php");
+    exit();
+}
+
+if (!hasPermission('pingowanie')) {
+    header("Location: testowa.php"); // Mo  esz zmieni ^g na inn ^e stron ^y
     exit();
 }
 

@@ -7,9 +7,23 @@ function logEvent($message) {
     file_put_contents($logfile, "[{$timestamp}] - {$message}\n", FILE_APPEND);
 }
 
-// Sprawdzenie, czy użytkownik jest zalogowany
+function hasPermission($action) {
+    $role = $_SESSION['role'] ?? '';
+    $permissions = [
+        'admin' => ['skaner'],
+        'user' => ['skaner'],
+        'view' => [] // Użytkownik "view" nie ma dostępu do skaner
+    ];
+    return in_array($action, $permissions[$role] ?? []);
+}
+
 if (!isset($_SESSION['username'])) {
     header("Location: login.php");
+    exit();
+}
+
+if (!hasPermission('skaner')) {
+    header("Location: testowa.php"); // Możesz zmienić na inną stronę
     exit();
 }
 
