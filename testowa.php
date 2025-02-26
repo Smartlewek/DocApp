@@ -245,7 +245,7 @@ $appVersion = "1.2 beta";
         <div class="d-flex justify-content-md-end justify-content-center flex-wrap gap-2">
             <!-- Przyciski -->
 			<?php if (hasPermission('monitor')): ?>
-	    <a href="speedtest.php" class="btn btn-primary btn-custom">speedtest</a>
+	    <a href="speedtest.php" class="btn btn-primary btn-custom">Speedtest</a>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#opisModal">Opis</button>
             <a href="skaner.php" class="btn btn-secondary">Skaner</a>
             <a href="pingowanie.php" class="btn btn-warning">Monitoring IP</a>
