@@ -148,4 +148,4 @@ ip_address=$(hostname -I | awk '{print $1}')
 echo "Wpisz ten adres w aplikacji: $ip_address"
 
 # Instalacja zakończona
-echo "✅ Instalacja i konfiguracja zakończona pomyślnie!"
+echo "✅ Instalacja i konfiguracja zakończona pomyślnie! Loguj się!"
