@@ -259,7 +259,7 @@ $result = $conn->query($sql);
         <button id="viewLogsBtn" class="btn btn-secondary" onclick="fetchLogs()">Pokaż logi</button>
 	 <div class="dropdown">
                 <button class="btn btn-primary dropdown-toggle" type="button" id="exportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    Eksportuj baz ^y danych
+                    Eksportuj bazy danych
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="exportDropdown">
                     <li><a class="dropdown-item" href="export.php?format=csv&table=users">Eksportuj Users do CSV</a></li>
@@ -268,14 +268,107 @@ $result = $conn->query($sql);
                     <li><a class="dropdown-item" href="export.php?format=sql&table=devices">Eksportuj Devices do SQL</a></li>
                 </ul>
             </div>
+	<!-- Przycisk importu -->
+<div class="dropdown">
+    <button class="btn btn-warning dropdown-toggle" type="button" id="importDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-upload"></i> Importuj baz ^y danych
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="importDropdown">
+        <!-- Formularze dla r    nych plik  w -->
+        <li><button class="dropdown-item" onclick="openImportModal('users', 'csv')">Importuj Users z CSV</button></li>
+        <li><button class="dropdown-item" onclick="openImportModal('devices', 'csv')">Importuj Devices z CSV</button></li>
+        <li><button class="dropdown-item" onclick="openImportModal('users', 'sql')">Importuj Users z SQL</button></li>
+        <li><button class="dropdown-item" onclick="openImportModal('devices', 'sql')">Importuj Devices z SQL</button></li>
+    </ul>
+</div>
+
     </div>
 </div>
 
+<!-- Modal do importu plik  w -->
+<div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="importModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="importModalLabel">Importuj dane</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="importForm" enctype="multipart/form-data" onsubmit="handleImport(event)">
+                    <input type="file" name="file" id="importFile" required>
+                    <input type="hidden" name="table" id="importTable">
+                    <input type="hidden" name="format" id="importFormat">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                <button type="submit" class="btn btn-success" onclick="handleImport(event)">Importuj</button>
+            </div>
+        </div>
+    </div>
+</div>
 
+<!-- Modal komunikatu -->
+<div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="messageModalLabel">Komunikat</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="messageContent"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="closeMessageModal()">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
 
+<script>
+function openImportModal(table, format) {
+    document.getElementById('importTable').value = table;
+    document.getElementById('importFormat').value = format;
+    new bootstrap.Modal(document.getElementById('importModal')).show();
+}
 
+function handleImport(event) {
+    event.preventDefault(); // Zapobiega domy ^{lnemu przekierowaniu
+    
+    const form = document.getElementById('importForm');
+    const formData = new FormData(form);
+    
+    const importModalElement = document.getElementById('importModal');
+    const importModal = new bootstrap.Modal(importModalElement);
 
+    // Zamkni ^ycie modalu importu
+    importModal.hide();
 
+    // Wysy ^bamy dane do importu
+    fetch('import.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        let message = data.success ? data.success : data.error;
+        showMessage(message);
+    })
+    .catch(error => {
+        showMessage('Wyst ^epi ^b b ^b ^ed podczas importu');
+    });
+}
+
+function showMessage(message) {
+    const messageModal = new bootstrap.Modal(document.getElementById('messageModal'));
+    document.getElementById('messageContent').innerText = message;
+    messageModal.show();
+}
+
+function closeMessageModal() {
+    const messageModal = bootstrap.Modal.getInstance(document.getElementById('messageModal'));
+    messageModal.hide();
+}
+</script>
 
 
 <!-- Modal z logami -->
