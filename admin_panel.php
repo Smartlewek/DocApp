@@ -257,6 +257,17 @@ $result = $conn->query($sql);
         <button id="addUserBtn" class="btn btn-success" onclick="toggleAddUserForm()">Dodaj użytkownika</button>
         <a href="testowa.php" class="btn btn-secondary">Dokumentacja</a>
         <button id="viewLogsBtn" class="btn btn-secondary" onclick="fetchLogs()">Pokaż logi</button>
+	 <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="exportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    Eksportuj baz ^y danych
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="exportDropdown">
+                    <li><a class="dropdown-item" href="export.php?format=csv&table=users">Eksportuj Users do CSV</a></li>
+                    <li><a class="dropdown-item" href="export.php?format=csv&table=devices">Eksportuj Devices do CSV</a></li>
+                    <li><a class="dropdown-item" href="export.php?format=sql&table=users">Eksportuj Users do SQL</a></li>
+                    <li><a class="dropdown-item" href="export.php?format=sql&table=devices">Eksportuj Devices do SQL</a></li>
+                </ul>
+            </div>
     </div>
 </div>
 
