@@ -271,7 +271,7 @@ $result = $conn->query($sql);
 	<!-- Przycisk importu -->
 <div class="dropdown">
     <button class="btn btn-warning dropdown-toggle" type="button" id="importDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="fas fa-upload"></i> Importuj baz ^y danych
+        <i class="fas fa-upload"></i> Importuj bazy danych
     </button>
     <ul class="dropdown-menu" aria-labelledby="importDropdown">
         <!-- Formularze dla r    nych plik  w -->
@@ -280,9 +280,6 @@ $result = $conn->query($sql);
         <li><button class="dropdown-item" onclick="openImportModal('users', 'sql')">Importuj Users z SQL</button></li>
         <li><button class="dropdown-item" onclick="openImportModal('devices', 'sql')">Importuj Devices z SQL</button></li>
     </ul>
-</div>
-
-    </div>
 </div>
 
 <!-- Modal do importu plik  w -->
@@ -369,6 +366,11 @@ function closeMessageModal() {
     messageModal.hide();
 }
 </script>
+
+    </div>
+</div>
+
+
 
 
 <!-- Modal z logami -->
