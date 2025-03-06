@@ -378,27 +378,6 @@ function closeMessageModal() {
     }
 }
 </script>
-<!-- Przycisk czyszczenia tabeli devices -->
-<button class="btn btn-danger mt-3" onclick="clearDevicesTable()">Wyczyść tabelę Devices</button>
-
-<script>
-function clearDevicesTable() {
-    if (confirm("Czy na pewno chcesz usunąć wszystkie dane z tabeli Devices?")) {
-        fetch('clear_devices.php', {
-            method: 'POST'
-        })
-        .then(response => response.json())
-        .then(data => {
-            let message = data.success ? data.success : data.error;
-            showMessage(message);
-        })
-        .catch(error => {
-            showMessage('Wystąpił błąd podczas czyszczenia tabeli');
-        });
-    }
-}
-</script>
-
 
     </div>
 </div>
