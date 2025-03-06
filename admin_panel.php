@@ -270,7 +270,7 @@ $result = $conn->query($sql);
             </div>
 	<!-- Przycisk importu -->
 <div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" id="importDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+    <button class="btn btn-warning dropdown-toggle" type="button" id="importDropdown" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="fas fa-upload"></i> Importuj bazę danych
     </button>
     <ul class="dropdown-menu" aria-labelledby="importDropdown">
