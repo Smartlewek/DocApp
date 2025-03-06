@@ -270,11 +270,10 @@ $result = $conn->query($sql);
             </div>
 	<!-- Przycisk importu -->
 <div class="dropdown">
-    <button class="btn btn-warning dropdown-toggle" type="button" id="importDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="fas fa-upload"></i> Importuj bazy danych
+    <button class="btn btn-primary dropdown-toggle" type="button" id="importDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-upload"></i> Importuj bazę danych
     </button>
     <ul class="dropdown-menu" aria-labelledby="importDropdown">
-        <!-- Formularze dla r    nych plik  w -->
         <li><button class="dropdown-item" onclick="openImportModal('users', 'csv')">Importuj Users z CSV</button></li>
         <li><button class="dropdown-item" onclick="openImportModal('devices', 'csv')">Importuj Devices z CSV</button></li>
         <li><button class="dropdown-item" onclick="openImportModal('users', 'sql')">Importuj Users z SQL</button></li>
@@ -282,7 +281,7 @@ $result = $conn->query($sql);
     </ul>
 </div>
 
-<!-- Modal do importu plik  w -->
+<!-- Modal do importu plików -->
 <div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="importModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -325,22 +324,22 @@ $result = $conn->query($sql);
 function openImportModal(table, format) {
     document.getElementById('importTable').value = table;
     document.getElementById('importFormat').value = format;
-    new bootstrap.Modal(document.getElementById('importModal')).show();
+
+    // Otwieranie modalu
+    const importModal = new bootstrap.Modal(document.getElementById('importModal'));
+    importModal.show();
 }
 
 function handleImport(event) {
-    event.preventDefault(); // Zapobiega domy ^{lnemu przekierowaniu
+    event.preventDefault(); // Zapobiega domyślnemu przekierowaniu formularza
     
     const form = document.getElementById('importForm');
     const formData = new FormData(form);
-    
+
+    // Pobranie instancji istniejącego modalu importu
     const importModalElement = document.getElementById('importModal');
-    const importModal = new bootstrap.Modal(importModalElement);
+    const importModal = bootstrap.Modal.getInstance(importModalElement);
 
-    // Zamkni ^ycie modalu importu
-    importModal.hide();
-
-    // Wysy ^bamy dane do importu
     fetch('import.php', {
         method: 'POST',
         body: formData
@@ -348,22 +347,35 @@ function handleImport(event) {
     .then(response => response.json())
     .then(data => {
         let message = data.success ? data.success : data.error;
+
+        // Zamknięcie modalu importu
+        if (importModal) {
+            importModal.hide();
+        }
+
         showMessage(message);
     })
     .catch(error => {
-        showMessage('Wyst ^epi ^b b ^b ^ed podczas importu');
+        if (importModal) {
+            importModal.hide();
+        }
+        showMessage('Wystąpił błąd podczas importu');
     });
 }
 
 function showMessage(message) {
-    const messageModal = new bootstrap.Modal(document.getElementById('messageModal'));
+    const messageModalElement = document.getElementById('messageModal');
+    const messageModal = new bootstrap.Modal(messageModalElement);
     document.getElementById('messageContent').innerText = message;
     messageModal.show();
 }
 
 function closeMessageModal() {
-    const messageModal = bootstrap.Modal.getInstance(document.getElementById('messageModal'));
-    messageModal.hide();
+    const messageModalElement = document.getElementById('messageModal');
+    const messageModal = bootstrap.Modal.getInstance(messageModalElement);
+    if (messageModal) {
+        messageModal.hide();
+    }
 }
 </script>
 
