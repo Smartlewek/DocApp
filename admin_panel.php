@@ -257,6 +257,7 @@ $result = $conn->query($sql);
         <button id="addUserBtn" class="btn btn-success" onclick="toggleAddUserForm()">Dodaj użytkownika</button>
         <a href="testowa.php" class="btn btn-secondary">Dokumentacja</a>
         <button id="viewLogsBtn" class="btn btn-secondary" onclick="fetchLogs()">Pokaż logi</button>
+	<button class="btn btn-info" onclick="location.href='actualization.php'">Aktualizuj</button>
 	 <button class="btn btn-danger" onclick="clearDevicesTable()">Wyczyść tabelę Devices</button>
 	 <div class="dropdown">
                 <button class="btn btn-primary dropdown-toggle" type="button" id="exportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
