@@ -1,3 +1,4 @@
+![My Image](https://github.com/Smartlewek/DocApp/blob/main/readme.jpg)
 ## General info
 Simply manage homelab application.
 
