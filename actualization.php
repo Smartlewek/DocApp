@@ -88,7 +88,7 @@ foreach ($commitData['files'] as $file) {
     </ul>
     <form method="post">
         <button type="submit" name="update" class="btn btn-primary"> Aktualizuj teraz</button>
-        <button class="btn btn-info" onclick="location.href='admin_panel'">Aktualizuj</button>
+        <button class="btn btn-info" onclick="location.href='admin_panel.php'">Portót</button>
     </form>
 <?php endif; ?>
 
