@@ -4,14 +4,14 @@
 2. Manual Instalation 
 
 ### Clone setup script
-```bash
+
 wget http://raw.githubusercontent.com/Smartlewek/DocApp/main/setup.sh
-```bash
-Add permision
-```bash
+
+### Add permision
+
 chmod +x setup.sh
 
 ### Run script
-```bash
+bash
 ./setup.sh
 
