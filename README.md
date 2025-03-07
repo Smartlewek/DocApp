@@ -7,7 +7,7 @@
 ```bash
 wget http://raw.githubusercontent.com/Smartlewek/DocApp/main/setup.sh
 
-### Add permision
+#### Add permision
 ```bash
 chmod +x setup.sh
 
