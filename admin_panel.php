@@ -1,5 +1,5 @@
 <?php
-// Funkcja zapisująca logi do pliku
+// Funkcja zapisująca logi do pliku//
 function logActionToFile($action) {
     $logFile = 'logs.txt';
     $timestamp = date('Y-m-d H:i:s');
@@ -254,7 +254,7 @@ $result = $conn->query($sql);
    <div class="container my-4">
     <!-- Grupa przycisków: "Dodaj urządzenie", "Dokumentacja" i "Pokaż logi" -->
     <div class="button-group mb-3">
-        <button id="addUserBtn" class="btn btn-success" onclick="toggleAddUserForm()">Dodaj użytkownika</button>
+        <button id="addUserBtn" class="btn btn-waring" onclick="toggleAddUserForm()">Dodaj użytkownika</button>
         <a href="testowa.php" class="btn btn-secondary">Dokumentacja</a>
         <button id="viewLogsBtn" class="btn btn-secondary" onclick="fetchLogs()">Pokaż logi</button>
 	 <button class="btn btn-danger" onclick="clearDevicesTable()">Wyczyść tabelę Devices</button>
