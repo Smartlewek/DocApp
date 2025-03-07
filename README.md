@@ -1,9 +1,17 @@
-## Instalacja
+## Instalation
 
-Aby zainstalować i uruchomić projekt lokalnie, wykonaj poniższe kroki:
+1. Script
+2. Manual Instalation 
 
-### Krok 1: Klonowanie repozytorium
-
-Klonuj repozytorium na swoje urządzenie:
+### Clone setup script
 ```bash
-git clone https://github.com/twoj_uzytkownik/twoje_repozytorium.git
+wget http://raw.githubusercontent.com/Smartlewek/DocApp/main/setup.sh
+
+### Add permision
+```bash
+chmod +x setup.sh
+
+### Run script
+```bash
+./setup.sh
+
