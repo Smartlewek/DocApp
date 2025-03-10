@@ -1,5 +1,5 @@
 <?php
-// Funkcja zapisująca logi do pliku-test//
+// Funkcja zapisująca logi do pliku-testx//
 function logActionToFile($action) {
     $logFile = 'logs.txt';
     $timestamp = date('Y-m-d H:i:s');
