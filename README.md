@@ -3,7 +3,7 @@
 Simply manage homelab application.
 
 * Add, delete oraz modyfy ip address, netmask, gateway
-* Chode Vm, CT or physicall devices
+* Vm, CT or physicall devices
 * Add descripiotn and file to  device
 * scan network
 * ping devices
@@ -18,6 +18,20 @@ To run this project, install it locally using setup bash script.
 Clone setup script:
 ```
 $ wget http://raw.githubusercontent.com/Smartlewek/DocApp/main/setup.sh
+```
+Add Permision
+```
+$ chmod +x setup.sh
+```
+Run Script 
+```
+$ ./setup.sh
+```
+## Update
+To run this project, install it locally using setup bash script.
+Clone setup script:
+```
+$ wget http://raw.githubusercontent.com/Smartlewek/DocApp/main/update.sh
 ```
 Add Permision
 ```
