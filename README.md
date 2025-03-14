@@ -35,9 +35,9 @@ $ wget http://raw.githubusercontent.com/Smartlewek/DocApp/main/update.sh
 ```
 Add Permision
 ```
-$ chmod +x setup.sh
+$ chmod +x update.sh
 ```
 Run Script 
 ```
-$ ./setup.sh
+$ ./update.sh
 ```
