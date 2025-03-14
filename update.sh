@@ -25,6 +25,11 @@ if [ ! -d "$TEMP_DIR" ]; then
         # Usuwanie tymczasowego katalogu
         rm -rf "$TEMP_DIR"
         echo "Tymczasowy katalog usunięty."
+        
+        # Nadanie uprawnień dla logs.txt
+        chown www-data:www-data "$logs_file"
+        chmod 664 "$logs_file"
+        echo "Uprawnienia do logs.txt ustawione."
     else
         echo "Błąd podczas pobierania repozytorium."
     fi
