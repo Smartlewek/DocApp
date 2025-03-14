@@ -27,8 +27,8 @@ Run Script
 ```
 $ ./setup.sh
 ```
-## Update
-To run this project, install it locally using setup bash script.
+## Update 
+To update this project, install it locally using update bash script.
 Clone setup script:
 ```
 $ wget http://raw.githubusercontent.com/Smartlewek/DocApp/main/update.sh
