@@ -251,9 +251,9 @@ $result = $conn->query($sql);
         <!-- Komunikat -->
         <div id="message" style="display:none;" class="alert alert-info"></div>
 
-   <div class="container my-4">
+   <div class="col-md-12 text-md-end text-center">
     <!-- Grupa przycisków: "Dodaj urządzenie", "Dokumentacja" i "Pokaż logi" -->
-    <div class="button-group mb-3">
+    <div class="d-flex justify-content-md-end justify-content-center flex-wrap gap-2">
         <button id="addUserBtn" class="btn btn-success" onclick="toggleAddUserForm()">Dodaj użytkownika</button>
         <a href="testowa.php" class="btn btn-secondary">Dokumentacja</a>
         <button id="viewLogsBtn" class="btn btn-secondary" onclick="fetchLogs()">Pokaż logi</button>
