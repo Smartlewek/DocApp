@@ -2,9 +2,9 @@
 ## General info
 Simply manage homelab application.
 
-* Add, delete oraz modyfy ip address, netmask, gateway
-* Vm, CT or physicall devices
-* Add descripiotn and file to  device
+* Add, delete oraz modify ip address, netmask, gateway
+* Vm, CT or physical devices
+* Add description and file to  device
 * scan network
 * ping devices
 * simply monitoring network 
