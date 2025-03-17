@@ -87,6 +87,12 @@ $appVersion = "1.2 beta";
     color: #fff;              /* Kolor tekstu */
 }
 
+.btn-custom2 {
+    background-color: #ff9c33; /* Tw  j w ^basny kolor */
+    border-color: #ff5733;    /* Dopasowanie koloru obramowania */
+    color: #fff;              /* Kolor tekstu */
+}
+
 .btn-custom:hover {
     background-color: #e04c2e; /* Kolor po najechaniu */
     border-color: #e04c2e;
@@ -245,6 +251,7 @@ $appVersion = "1.2 beta";
         <div class="d-flex justify-content-md-end justify-content-center flex-wrap gap-2">
             <!-- Przyciski -->
 			<?php if (hasPermission('monitor')): ?>
+	    <a href="vm_monitor.php" class="btn btn-primary btn-custom2">VM Monitor</a>
 	    <a href="speedtest.php" class="btn btn-primary btn-custom">speedtest</a>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#opisModal">Opis</button>
             <a href="skaner.php" class="btn btn-secondary">Skaner</a>
