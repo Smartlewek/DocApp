@@ -98,7 +98,7 @@ $appVersion = "1.2 beta";
 .btn-custom2:hover {
     background-color: ; /* Zmiana koloru na czerwony */
     border-color: #ff0000 
-
+}
 
         .table-container {
             max-height: 60vh;
