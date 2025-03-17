@@ -89,7 +89,7 @@ $appVersion = "1.2 beta";
 
 .btn-custom2 {
     background-color: #ff9c33; /* Tw  j w ^basny kolor */
-    border-color: #ff5733;    /* Dopasowanie koloru obramowania */
+    border-color: #ff9c33;    /* Dopasowanie koloru obramowania */
     color: #fff;              /* Kolor tekstu */
 }
 
