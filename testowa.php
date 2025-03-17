@@ -95,10 +95,7 @@ $appVersion = "1.2 beta";
     border-color: #ffb433;    /* Dopasowanie koloru obramowania */
     color: #fff;              /* Kolor tekstu */
 }
-.btn-custom2:hover {
-    background-color: ; /* Zmiana koloru na czerwony */
-    border-color: #ff0000 
-}
+
 
         .table-container {
             max-height: 60vh;
