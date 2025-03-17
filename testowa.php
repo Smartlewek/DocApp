@@ -86,16 +86,14 @@ $appVersion = "1.2 beta";
     border-color: #ff5733;    /* Dopasowanie koloru obramowania */
     color: #fff;              /* Kolor tekstu */
 }
-
+.btn-custom:hover {
+    background-color: #e04c2e; /* Kolor po najechaniu */
+    border-color: #e04c2e;
+}
 .btn-custom2 {
     background-color: #ff9c33; /* Tw  j w ^basny kolor */
     border-color: #ff9c33;    /* Dopasowanie koloru obramowania */
     color: #fff;              /* Kolor tekstu */
-}
-
-.btn-custom:hover {
-    background-color: #e04c2e; /* Kolor po najechaniu */
-    border-color: #e04c2e;
 }
 
 
