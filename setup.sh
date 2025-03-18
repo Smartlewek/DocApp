@@ -76,6 +76,16 @@ CREATE TABLE IF NOT EXISTS devices (
     status ENUM('Aktywne', 'Nieaktywne', 'W konfiguracji') NOT NULL DEFAULT 'Aktywne',
     description TEXT
 );
+
+CREATE TABLE notes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    content TEXT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    title VARCHAR(255) NOT NULL,
+    modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    important TINYINT(1) DEFAULT 0
+);
+
 EOF
 
 # Tworzenie użytkownika admin z 2FA
