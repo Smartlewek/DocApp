@@ -1,7 +1,7 @@
 <?php
 // import.php - obsługa importu CSV i SQL
 
-require 'db_connection.php'; // Po ^b ^eczenie z baz ^e danych
+require 'db_connection.php'; // Połączenie z bazą danych
 
 $response = ['success' => '', 'error' => ''];
 
@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['file']) && isset($_P
     $file = $_FILES['file']['tmp_name'];
     $format = $_POST['format'];
 
-    if (!in_array($table, ['users', 'devices']) || !in_array($format, ['csv', 'sql'])) {
+    if (!in_array($table, ['users', 'devices', 'notes']) || !in_array($format, ['csv', 'sql'])) {
         $response['error'] = "Błąd: Nieprawidłowa tabela lub format.";
         echo json_encode($response);
         exit;
@@ -29,18 +29,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['file']) && isset($_P
                     // Zbadaj czy CSV zawiera: ID, Device Type, Name, IP Address, Netmask, Gateway, Status, Description
                     $stmt = $conn->prepare("INSERT INTO devices (id, device_type, name, ip_address, netmask, gateway, status, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
                     $stmt->bind_param("isssssss", $data[0], $data[1], $data[2], $data[3], $data[4], $data[5], $data[6], $data[7]);
+                } elseif ($table === 'notes') {
+                    // Zbadaj czy CSV zawiera: ID, Content, Created At, Title, Modified At, Important
+                    $stmt = $conn->prepare("INSERT INTO notes (id, content, created_at, title, modified_at, important) VALUES (?, ?, ?, ?, ?, ?)");
+                    $stmt->bind_param("issssii", $data[0], $data[1], $data[2], $data[3], $data[4], $data[5]);
                 }
                 $stmt->execute();
             }
-	    fclose($handle);
+            fclose($handle);
             $response['success'] = "Import CSV zakończony sukcesem!";
         } else {
-            $response['error'] = "Błąd: Nie mo  na otworzyć pliku CSV.";
+            $response['error'] = "Błąd: Nie można otworzyć pliku CSV.";
         }
     } elseif ($format === 'sql') {
         $query = file_get_contents($file);
         if ($query) {
-            // Usuwanie wszelkich komentarzy, jeżeli w pliku SQL znajduje się takie
+            // Usuwanie wszelkich komentarzy, jeżeli w pliku SQL znajdują się takie
             $query = preg_replace('/^--.*$/m', '', $query);  // Usuwanie komentarzy SQL
             $query = preg_replace('/^\/\*.*?\*\/$/ms', '', $query); // Usuwanie komentarzy blokowych
 
