@@ -41,3 +41,8 @@ Run Script
 ```
 $ ./update.sh
 ```
+## Uninstall (recommended)
+To uninstall this app, simply delete vm/ct.
+```
+
+
