@@ -1,6 +1,19 @@
 <?php
 include 'db_connection.php';
 
+session_start();  // Rozpoczynamy sesję
+
+// Sprawdzanie, czy użytkownik jest zalogowany
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");  // Przekierowanie na stronę logowania, jeśli brak sesji
+    exit();
+}
+
+$username = $_SESSION['username'];  // Pobranie nazwy użytkownika z sesji
+$isAdmin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';  // Sprawdzanie, czy użytkownik jest administratorem
+$username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Nieznany użytkownik';  // Sprawdzenie nazwy użytkownika
+$hostname = gethostname();  // Pobieranie nazwy hosta
+
 // Komunikaty
 $message = '';
 $title = '';
@@ -75,6 +88,34 @@ if (isset($_GET['edit']) && $_GET['edit']) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <body class="bg-light">
+    <div class="container my-4">
+        <!-- Nagłówek z przyciskiem wylogowania -->
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <h2>Zarządzanie urządzeniami</h2>
+            </div>
+            <div class="col-md-4 text-md-end text-center">
+                <div class="dropdown">
+                    <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Wyloguj się
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <!-- Nazwa użytkownika -->
+                        <li class="dropdown-item text-center"><strong><?php echo htmlspecialchars($username); ?></strong></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <!-- Opcje dostępne dla administratora -->
+                        <?php if ($isAdmin): ?>
+                            <li><a class="dropdown-item" href="admin_panel.php">Panel Admina</a></li>
+                        <?php endif; ?>
+                        <!-- Link do dokumentacji -->
+                        <li><a class="dropdown-item" href="testowa.php">Dokumentacja</a></li>
+                        <!-- Link do wylogowania -->
+                        <li><a class="dropdown-item" href="logout.php">Wyloguj się</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     <title>Notatki</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
@@ -184,6 +225,8 @@ if (isset($_GET['edit']) && $_GET['edit']) {
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script
 </body>
 </html>
 
