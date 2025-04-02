@@ -95,10 +95,10 @@ $appVersion = "1.2 beta";
     border-color: #ffb433;    /* Dopasowanie koloru obramowania */
     color: #fff;              /* Kolor tekstu */
 }
-
+	
 .btn-custom3 {
-    background-color: #c9ff33; /* Tw  j w ^basny kolor */
-    border-color: #ffb433;    /* Dopasowanie koloru obramowania */
+    background-color: #722ee0; /* Tw  j w ^basny kolor */
+    border-color: #722ee0;    /* Dopasowanie koloru obramowania */
     color: #fff;              /* Kolor tekstu */
 }
 
