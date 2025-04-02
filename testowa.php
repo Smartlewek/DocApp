@@ -96,6 +96,11 @@ $appVersion = "1.2 beta";
     color: #fff;              /* Kolor tekstu */
 }
 
+.btn-custom3 {
+    background-color: #c9ff33; /* Tw  j w ^basny kolor */
+    border-color: #ffb433;    /* Dopasowanie koloru obramowania */
+    color: #fff;              /* Kolor tekstu */
+}
 
         .table-container {
             max-height: 60vh;
@@ -249,6 +254,7 @@ $appVersion = "1.2 beta";
         <div class="d-flex justify-content-md-end justify-content-center flex-wrap gap-2">
             <!-- Przyciski -->
 			<?php if (hasPermission('monitor')): ?>
+	     <a href="notes.php" class="btn btn-primary btn-custom2">Notatki</a>
 	    <a href="vm_monitor.php" class="btn btn-primary btn-custom2">VM Monitor</a>
 	    <a href="speedtest.php" class="btn btn-primary btn-custom">speedtest</a>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#opisModal">Opis</button>
